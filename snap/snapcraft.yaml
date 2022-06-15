@@ -22,8 +22,6 @@ apps:
     asbru:
         command: bin/asbru-cm
         extensions: [gnome-3-38]
-        slots:
-           - dbus-daemon
         environment:
             
               LANG: C.UTF-8
