@@ -1,5 +1,5 @@
 name: asbru
-version: '6.4.3
+version: '6.4.3'
 base: core20
 architectures:
   - build-on: amd64
