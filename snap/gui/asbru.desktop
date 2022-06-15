@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Asbru
+Comment=Low-code programming for event-driven applications
+Exec=asbru
+Icon=${SNAP}/meta/gui/icon.png
+Terminal=false
+Categories=Development;

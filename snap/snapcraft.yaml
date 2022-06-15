@@ -8,12 +8,7 @@ architectures:
   - build-on: arm64
     run-on: arm64
     
-  - build-on: i386
-    run-on: i386
-    
-  - build-on: armhf
-    run-on: armhf
-        
+       
 summary: InfluxDB timeseries database
 description: |
 
@@ -62,7 +57,7 @@ parts:
         stage-packages: [perl, libvte-2.91-0, libcairo-perl, libfindbin-libs-perl, libglib-perl, libpango-perl, libsocket6-perl, libexpect-perl, libnet-proxy-perl, libyaml-perl, libcrypt-cbc-perl, libcrypt-blowfish-perl, libgtk3-perl, libnet-arp-perl, libossp-uuid-perl, openssh-client, telnet, ftp, libcrypt-rijndael-perl, libxml-parser-perl, libcanberra-gtk-module, dbus-x11, libx11-guitest-perl, libgtk3-simplelist-perl, gir1.2-wnck-3.0, gir1.2-vte-2.91]
 
   
-    shscripts:  
+    sources:  
         
         plugin: dump
         source-type: git
