@@ -1,0 +1,71 @@
+name: asbru
+version: '1.8.3'
+base: core20
+architectures:
+  - build-on: amd64
+    run-on: amd64
+
+  - build-on: arm64
+    run-on: arm64
+    
+  - build-on: i386
+    run-on: i386
+    
+  - build-on: armhf
+    run-on: armhf
+        
+summary: InfluxDB timeseries database
+description: |
+
+    InfluxDB is an open source time series platform. This includes APIs for storing and querying data, processing it in the background for ETL or monitoring and alerting purposes,
+    user dashboards, and visualizing and exploring the data and more. The master branch on this repo now represents the latest InfluxDB, which now includes functionality for Kapacitor 
+    (background processing) and Chronograf (the UI) all in a single binary.
+
+
+confinement: strict
+
+apps:
+    asbru:
+        command: bin/asbru-cm
+        extensions: [gnome-3-38]
+        slots:
+           - dbus-daemon
+        environment:
+            
+              LANG: C.UTF-8
+              LC_ALL: C.UTF-8
+              PERL5LIB:  "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl-base/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl5/5.30/:$SNAP/usr/share/perl5/:$SNAP/usr/share/perl/5.30.0/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.30/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.30.0/"
+
+      
+        plugs: [network, network-bind,  x11, desktop, gsettings, wayland]
+        
+
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/share/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/share/sounds
+    default-provider: gtk-common-themes        
+
+parts:
+
+    
+    influxdb:
+        plugin: nil        
+        stage-packages: [perl, libvte-2.91-0, libcairo-perl, libfindbin-libs-perl, libglib-perl, libpango-perl, libsocket6-perl, libexpect-perl, libnet-proxy-perl, libyaml-perl, libcrypt-cbc-perl, libcrypt-blowfish-perl, libgtk3-perl, libnet-arp-perl, libossp-uuid-perl, openssh-client, telnet, ftp, libcrypt-rijndael-perl, libxml-parser-perl, libcanberra-gtk-module, dbus-x11, libx11-guitest-perl, libgtk3-simplelist-perl, gir1.2-wnck-3.0, gir1.2-vte-2.91]
+
+  
+    shscripts:  
+        
+        plugin: dump
+        source-type: git
+        source: https://github.com/asbru-cm/asbru-cm.git
+        organize:
+          '*': bin/
