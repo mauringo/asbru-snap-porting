@@ -30,7 +30,7 @@ apps:
               PERL5LIB:  "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl-base:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl5/5.34:$SNAP/usr/share/perl5/:$SNAP/usr/share/perl/5.34:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.34:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.34"
 
       
-        plugs: [ desktop, home, ssh-keys,write-ssh,gtk-3-themes, gnome-42-2204, desktop-legacy, gsettings, opengl, wayland, x11, mount-observe, calendar-service, network, network-bind]
+        plugs: [ desktop, home, ssh-keys, gtk-3-themes, gnome-42-2204, desktop-legacy, gsettings, opengl, wayland, x11, mount-observe, calendar-service, network, network-bind]
 
 slots:
   dbus-asbru:
