@@ -1,12 +1,11 @@
 name: asbru
 version: '6.4.3'
-base: core20
+base: core22
 architectures:
   - build-on: amd64
-    run-on: amd64
+
 
   - build-on: arm64
-    run-on: arm64
     
        
 summary: Asbru-CM Porting for snapcraft
@@ -21,38 +20,43 @@ confinement: strict
 apps:
     asbru:
         command: bin/asbru-cm
-        extensions: [gnome-3-38]
+        extensions: [gnome]
         slots:
             - dbus-asbru   
         environment:
             
               LANG: C.UTF-8
               LC_ALL: C.UTF-8
-              PERL5LIB:  "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl-base/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl5/5.30/:$SNAP/usr/share/perl5/:$SNAP/usr/share/perl/5.30.0/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.30/:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.30.0/"
+              PERL5LIB:  "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl-base:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl5/5.34:$SNAP/usr/share/perl5/:$SNAP/usr/share/perl/5.34:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.34:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/perl/5.34"
 
       
-        plugs: [network, network-bind,  x11, desktop, gsettings, wayland]
-        
+        plugs: [ desktop, desktop-legacy, gsettings, opengl, wayland, x11, mount-observe, calendar-service, network, network-bind]
+
 slots:
   dbus-asbru:
     interface: dbus
     bus: session
     name: org.asbru-cm.main
-    
+      
 plugs:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/share/themes
-    default-provider: gtk-common-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/share/icons
-    default-provider: gtk-common-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/share/sounds
-    default-provider: gtk-common-themes        
-
+    desktop:
+        mount-host-font-cache: false
+    gtk-3-themes:
+        interface: content
+        target: $SNAP/data-dir/themes
+        default-provider: gtk-common-themes
+    icon-themes:
+        interface: content
+        target: $SNAP/data-dir/icons
+        default-provider: gtk-common-themes
+    sound-themes:
+        interface: content
+        target: $SNAP/data-dir/sounds
+        default-provider: gtk-common-themes
+    gnome-42-2204:
+        interface: content
+        target: $SNAP/gnome-platform
+        default-provider: gnome-42-2204
 parts:
 
     
